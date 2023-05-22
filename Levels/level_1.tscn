@@ -35,6 +35,7 @@ script = ExtResource("1_mi1dh")
 
 [node name="WorldLevel1" parent="ViewportContainers/SubViewportContainer1/SubViewport" instance=ExtResource("3_fnxgk")]
 z_index = 2
+time_limit = 250
 
 [node name="ShadowLayer" type="CanvasLayer" parent="ViewportContainers/SubViewportContainer1/SubViewport"]
 

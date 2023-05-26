@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdof73bdgjeyq"]
+
+[ext_resource type="PackedScene" uid="uid://bdo8p214b06r4" path="res://Characters/player.tscn" id="1_601lk"]
+[ext_resource type="Texture2D" uid="uid://co1jkgdmuq3vx" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Player/p3_spritesheet.png" id="2_4t7jc"]
+
+[node name="Player" instance=ExtResource("1_601lk")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_4t7jc")

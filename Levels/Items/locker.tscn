@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtnn4n8nj2or3"]
+
+[ext_resource type="Texture2D" uid="uid://dl4ib4a24rxbw" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Tiles/lock_yellow.png" id="1_gaq0y"]
+[ext_resource type="Script" path="res://Scripts/locker.gd" id="1_yl0em"]
+[ext_resource type="Texture2D" uid="uid://gsuhb0hsgegr" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Tiles/lock_blue.png" id="2_5w57p"]
+[ext_resource type="Texture2D" uid="uid://jqcoknnbj0tf" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Tiles/lock_green.png" id="3_3cf2k"]
+[ext_resource type="Texture2D" uid="uid://d34kdg7cipulw" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Tiles/lock_red.png" id="4_qg1t2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qoid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5w57p")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3cf2k")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qg1t2")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gaq0y")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbpw0"]
+size = Vector2(70, 70)
+
+[node name="Locker" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_yl0em")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1qoid")
+animation = &"red"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pbpw0")

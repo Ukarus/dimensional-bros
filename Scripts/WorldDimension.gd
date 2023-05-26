@@ -7,6 +7,7 @@ extends Node2D
 @onready var time_label = $UILayer/Label
 @onready var timer = $Timer
 @onready var is_dimension_active : bool = true
+@onready var items = $Items.get_children()
 var current_time : int = 0
 var current_plate =  null
 
@@ -16,17 +17,6 @@ func _ready():
 	update_time_label()
 	if is_dimension_active:
 		timer.start()
-	var items = $Items
-	if items != null:
-		var plates = items.get_children()
-		for p in plates:
-			p.connect("on_trigger_item_area", set_current_plate)
-			p.connect("on_trigger_item_exited", set_current_plate)
-	
-func _process(delta):
-	if Input.is_action_just_pressed("trigger_action") && is_dimension_active && current_plate != null:
-		current_plate.trigger_action()
-
 
 func update_time_label() -> void:
 	time_label.text = "{time}".format({"time": current_time})

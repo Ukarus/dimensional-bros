@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://c225jegv1mok8"]
+
+[ext_resource type="Texture2D" uid="uid://dsuwgsbpaucyn" path="res://Assets/kenney_platformer-art-deluxe/Mushroom expansion/Backgrounds/bg_castle.png" id="1_hjg3k"]
+[ext_resource type="Script" path="res://Scripts/start_screen.gd" id="1_xsv5q"]
+[ext_resource type="Texture2D" uid="uid://bpbhr12ke5i5l" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Player/p1_jump.png" id="2_v4jfu"]
+[ext_resource type="Theme" uid="uid://b55hgrj3fpjtb" path="res://Assets/game_theme.tres" id="3_hdyxa"]
+[ext_resource type="Texture2D" uid="uid://cuju4i5hvekxy" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Player/p3_jump.png" id="4_ibxvx"]
+[ext_resource type="AudioStream" uid="uid://lcb6fl8m8n2y" path="res://Assets/Sounds/puzzle-1-a.mp3" id="6_77exy"]
+
+[node name="StartScreen" type="CanvasLayer"]
+script = ExtResource("1_xsv5q")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hjg3k")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Player1" type="TextureRect" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_v4jfu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hdyxa")
+theme_override_font_sizes/font_size = 64
+text = "Dimensional Bros"
+
+[node name="StartButton" type="Button" parent="Control/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hdyxa")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="Control/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hdyxa")
+text = "Quit
+"
+
+[node name="Player2" type="TextureRect" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ibxvx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_77exy")
+autoplay = true
+
+[connection signal="pressed" from="Control/CenterContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

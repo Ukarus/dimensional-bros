@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://di6ptoymwyine"]
+
+[ext_resource type="Theme" uid="uid://b55hgrj3fpjtb" path="res://Assets/game_theme.tres" id="1_esf4m"]
+[ext_resource type="Script" path="res://Scripts/victory_screen.gd" id="1_qs2sh"]
+[ext_resource type="Texture2D" uid="uid://dab7wtfhm1j8b" path="res://Assets/kenney_platformer-art-deluxe/Mushroom expansion/Backgrounds/bg_shroom.png" id="3_d4bwv"]
+[ext_resource type="Texture2D" uid="uid://bk7tbbccttikd" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Player/p1_front.png" id="4_42idm"]
+[ext_resource type="Texture2D" uid="uid://dunpquje51530" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Player/p3_front.png" id="5_xhlml"]
+
+[node name="VictoryScreen" type="CanvasLayer"]
+script = ExtResource("1_qs2sh")
+
+[node name="CenterContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_d4bwv")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Player1" type="TextureRect" parent="CenterContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_42idm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_esf4m")
+theme_override_font_sizes/font_size = 64
+text = "Victory"
+
+[node name="Button" type="Button" parent="CenterContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_esf4m")
+text = "Quit"
+
+[node name="Player2" type="TextureRect" parent="CenterContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_xhlml")
+
+[connection signal="pressed" from="CenterContainer/CenterContainer/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

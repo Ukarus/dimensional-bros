@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b55hgrj3fpjtb"]
+
+[ext_resource type="FontFile" uid="uid://dpjk51jlmkdbm" path="res://Assets/Fonts/Kenney Pixel.ttf" id="1_lceo8"]
+
+[resource]
+default_font = ExtResource("1_lceo8")
+default_font_size = 18
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_lceo8")
+Label/font_sizes/font_size = 16

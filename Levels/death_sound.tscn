@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://u0lq2m1cys3x"]
+
+[ext_resource type="AudioStream" uid="uid://khn8pxfxypcf" path="res://Assets/Sounds/vgdeathsound.ogg" id="1_ppmmt"]
+
+[node name="DeathSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_ppmmt")

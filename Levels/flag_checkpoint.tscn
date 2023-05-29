@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx015ampy0mno"]
+
+[ext_resource type="Script" path="res://Scripts/FlagCheckpoint.gd" id="1_gtqve"]
+[ext_resource type="Texture2D" uid="uid://cgbsb8bid1i25" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Items/flagRed2.png" id="2_qmxho"]
+[ext_resource type="Texture2D" uid="uid://b6bx1o6op8dnd" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Items/flagRedHanging.png" id="2_qyxas"]
+[ext_resource type="Texture2D" uid="uid://dy0wsh41to4uj" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Items/flagRed.png" id="3_jus17"]
+[ext_resource type="AudioStream" uid="uid://bcql6w1ewnovr" path="res://Assets/Sounds/sci fi hit 2.wav" id="5_ldjgn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o64f8"]
+radius = 49.0918
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3imke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qyxas")
+}],
+"loop": true,
+"name": &"red_consumed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qmxho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jus17")
+}],
+"loop": true,
+"name": &"red_start",
+"speed": 4.0
+}]
+
+[node name="FlagCheckpoint" type="Area2D"]
+z_index = -1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_gtqve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o64f8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, -2)
+sprite_frames = SubResource("SpriteFrames_3imke")
+animation = &"red_start"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ldjgn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

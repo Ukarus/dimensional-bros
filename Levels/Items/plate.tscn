@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cckutn3spwd5q"]
+[gd_scene load_steps=12 format=3 uid="uid://cckutn3spwd5q"]
 
 [ext_resource type="Script" path="res://Scripts/plate.gd" id="1_7kv7g"]
 [ext_resource type="Texture2D" uid="uid://c52fuqdx7w73b" path="res://Assets/kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile053.png" id="1_m0qtq"]
 [ext_resource type="Texture2D" uid="uid://cbga1bkulsfny" path="res://Assets/kenney_simplified-platformer-pack/PNG/Tiles/platformPack_tile054.png" id="2_l2f2f"]
+[ext_resource type="AudioStream" uid="uid://br2qbfk6yrmrp" path="res://Assets/Sounds/deep sci fi stinger 2.wav" id="4_nwkgv"]
+[ext_resource type="AudioStream" uid="uid://1sq6jjch0xix" path="res://Assets/Sounds/error_008.ogg" id="5_l4166"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_054gh"]
 animations = [{
@@ -159,6 +161,12 @@ offset_top = -24.0
 offset_right = 76.0
 offset_bottom = 2.0
 text = "Press E to interact"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nwkgv")
+
+[node name="FailSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_l4166")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

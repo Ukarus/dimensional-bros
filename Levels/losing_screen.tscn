@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://ne6nxq5eqlrk"]
+
+[ext_resource type="Script" path="res://Scripts/losing_screen.gd" id="1_yc40y"]
+[ext_resource type="Theme" uid="uid://b55hgrj3fpjtb" path="res://Assets/game_theme.tres" id="2_33rsi"]
+[ext_resource type="Texture2D" uid="uid://bolyaxe5kjw4i" path="res://Assets/kenney_platformer-art-deluxe/Mushroom expansion/Backgrounds/bg_grasslands.png" id="3_1m16b"]
+
+[node name="LosingScreen" type="CanvasLayer"]
+script = ExtResource("1_yc40y")
+
+[node name="CenterContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1m16b")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_33rsi")
+theme_override_colors/font_color = Color(0.807843, 0.317647, 0.984314, 1)
+theme_override_font_sizes/font_size = 48
+text = "Defeat"
+
+[node name="RetryButton" type="Button" parent="CenterContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_33rsi")
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_33rsi")
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CenterContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -33,3 +33,7 @@ func change_to_next_color():
 	animated_sprite.play(get_current_skin_color())
 
 
+
+
+func _on_area_2d_body_entered(body):
+	change_to_next_color()

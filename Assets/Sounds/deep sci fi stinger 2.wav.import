@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://br2qbfk6yrmrp"
+path="res://.godot/imported/deep sci fi stinger 2.wav-5a28d72076cc760a329b0836c09ca0d9.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/deep sci fi stinger 2.wav"
+dest_files=["res://.godot/imported/deep sci fi stinger 2.wav-5a28d72076cc760a329b0836c09ca0d9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

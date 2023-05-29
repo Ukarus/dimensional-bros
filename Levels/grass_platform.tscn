@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://n46lfb1yd0n7"]
+
+[ext_resource type="Script" path="res://Scripts/grass_platform.gd" id="1_curv2"]
+[ext_resource type="Texture2D" uid="uid://blmdpawvwfp4p" path="res://Assets/grass_platform.png" id="1_v4j7y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4oevp"]
+size = Vector2(209, 40)
+
+[node name="GrassPlatform" type="AnimatableBody2D"]
+collision_mask = 4
+script = ExtResource("1_curv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v4j7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -15)
+shape = SubResource("RectangleShape2D_4oevp")
+one_way_collision = true

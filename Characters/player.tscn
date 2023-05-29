@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdo8p214b06r4"]
+[gd_scene load_steps=10 format=3 uid="uid://bdo8p214b06r4"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_crh56"]
 [ext_resource type="Texture2D" uid="uid://gjhp806bc541" path="res://Assets/kenney_platformer-art-deluxe/Base pack/Player/p1_spritesheet.png" id="2_yxeto"]
+[ext_resource type="AudioStream" uid="uid://bcdcybi1ibbgc" path="res://Assets/Sounds/SFX_Jump_42.wav" id="3_yhu2c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3ol6"]
 radius = 26.0
@@ -98,3 +99,6 @@ shape = SubResource("CapsuleShape2D_v3ol6")
 libraries = {
 "": SubResource("AnimationLibrary_ulmn5")
 }
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yhu2c")

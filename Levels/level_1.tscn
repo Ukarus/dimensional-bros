@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4o7viuluvbmu"]
+[gd_scene load_steps=9 format=3 uid="uid://b4o7viuluvbmu"]
 
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_bky3o"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_mi1dh"]
 [ext_resource type="Script" path="res://Scripts/DimensionViewport.gd" id="2_jtdsm"]
+[ext_resource type="PackedScene" uid="uid://di6ptoymwyine" path="res://Levels/victory_screen.tscn" id="2_lb7ow"]
+[ext_resource type="Theme" uid="uid://b55hgrj3fpjtb" path="res://Assets/game_theme.tres" id="3_1jsy6"]
 [ext_resource type="PackedScene" uid="uid://cc6irgntcavpg" path="res://Levels/light_dimension.tscn" id="3_fnxgk"]
 [ext_resource type="PackedScene" uid="uid://dh8gskfp4to3i" path="res://Levels/dark_dimension.tscn" id="4_hcpj4"]
+[ext_resource type="AudioStream" uid="uid://lcb6fl8m8n2y" path="res://Assets/Sounds/puzzle-1-a.mp3" id="7_soxll"]
 
 [node name="Level1" type="Node"]
 script = ExtResource("1_bky3o")
+victory_scene = ExtResource("2_lb7ow")
 
 [node name="ViewportContainers" type="HBoxContainer" parent="."]
 anchors_preset = 15
@@ -35,7 +39,8 @@ script = ExtResource("1_mi1dh")
 
 [node name="WorldLevel1" parent="ViewportContainers/SubViewportContainer1/SubViewport" instance=ExtResource("3_fnxgk")]
 z_index = 2
-time_limit = 250
+time_limit = 50
+metadata/_edit_vertical_guides_ = [4047.0, -64.0]
 
 [node name="ShadowLayer" type="CanvasLayer" parent="ViewportContainers/SubViewportContainer1/SubViewport"]
 
@@ -46,6 +51,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.745098, 0.745098, 0.745098, 0.501961)
+
+[node name="CenterContainer" type="CenterContainer" parent="ViewportContainers/SubViewportContainer1/SubViewport/ShadowLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ViewportContainers/SubViewportContainer1/SubViewport/ShadowLayer/CenterContainer"]
+layout_mode = 2
+text = "Light Dimension Completed"
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="ViewportContainers"]
 layout_mode = 2
@@ -62,6 +79,9 @@ script = ExtResource("2_jtdsm")
 script = ExtResource("1_mi1dh")
 
 [node name="DarkDimension" parent="ViewportContainers/SubViewportContainer2/SubViewport2" instance=ExtResource("4_hcpj4")]
+time_limit = 50
+metadata/_edit_vertical_guides_ = [200.0]
+metadata/_edit_horizontal_guides_ = [-1600.0]
 
 [node name="ShadowLayer" type="CanvasLayer" parent="ViewportContainers/SubViewportContainer2/SubViewport2"]
 
@@ -72,3 +92,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.745098, 0.745098, 0.745098, 0.501961)
+
+[node name="CenterContainer" type="CenterContainer" parent="ViewportContainers/SubViewportContainer2/SubViewport2/ShadowLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ViewportContainers/SubViewportContainer2/SubViewport2/ShadowLayer/CenterContainer"]
+layout_mode = 2
+text = "Dark Dimension Completed"
+
+[node name="PauseContainer" type="CenterContainer" parent="."]
+process_mode = 3
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseContainer"]
+layout_mode = 2
+color = Color(0.176471, 0.176471, 0.176471, 0.784314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_1jsy6")
+theme_override_colors/font_color = Color(0.505882, 0.156863, 0.690196, 1)
+theme_override_font_sizes/font_size = 64
+text = "Game Paused"
+
+[node name="ResumeButton" type="Button" parent="PauseContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="PauseContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_soxll")
+autoplay = true
+
+[connection signal="pressed" from="PauseContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

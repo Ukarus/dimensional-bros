@@ -1,15 +1,17 @@
 extends CharacterBody2D
 
 @export var is_active_player = true
+@export var jump_velocity = -450
 @onready var animation_player = $AnimationPlayer
 @onready var sprite2d = $Sprite2D
+@onready var jump_sound = $JumpSound
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_item = null
 
+signal reset_player_position
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -20,7 +22,8 @@ func _physics_process(delta):
 	if is_active_player:
 		# Handle Jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+			velocity.y = jump_velocity
+			jump_sound.play()
 		if Input.is_action_just_pressed("trigger_action") and current_item != null:
 			current_item.trigger_action()
 		# Get the input direction and handle the movement/deceleration.
@@ -35,10 +38,20 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
 	var collided = move_and_slide()
-	if collided:
+	if collided and is_active_player:
+		
 		var last_collider = get_last_slide_collision().get_collider()
-		if last_collider.get_class() == "StaticBody2D" and last_collider.has_method("change_to_next_color"):
-			last_collider.change_to_next_color()
+#		if last_collider.get_class() == "StaticBody2D" and last_collider.has_method("change_to_next_color"):
+#			last_collider.change_to_next_color()
+#		elif last_collider.get_class() == "TileMap":
+		if last_collider.get_class() == "TileMap":
+			var tilemap = last_collider as TileMap
+			var pos = tilemap.local_to_map(get_last_slide_collision().get_position())
+			var td = tilemap.get_cell_tile_data(0, pos)
+			if td is TileData and td.get_custom_data("is_letal"):
+				emit_signal("reset_player_position")
+				# Check if we are standing in an obstacle tile
+				#print(td.get_custom_data("is_letal"))
 
 func stop_movement():
 	velocity = Vector2.ZERO
